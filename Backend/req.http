@@ -1,0 +1,2 @@
+###get
+get http://localhost:3000/user-api/getusers
