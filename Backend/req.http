@@ -1,2 +1,5 @@
 ###get
 get http://localhost:3000/user-api/getusers
+
+###get admin-api details
+get http://localhost:3000/admin-api//getadminDetails
