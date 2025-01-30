@@ -2,11 +2,10 @@ const exp=require('express')
 const userApp=exp.Router();
 // import the model
 const userAuthor=require('../models/userAuthormodel')
+const expressAsyncHandler=require('express-async-handler');
+const createUserAuthor = require('./createUserAuthor');
 
-userApp.get('/getusers',async(req,res)=>{
-    let users=await userAuthor.find();
-
-  res.send({message:"althaf in the user api",payLoad:users})
-})
+// API
+userApp.post('/user',expressAsyncHandler(createUserAuthor))
 
 module.exports=userApp;
