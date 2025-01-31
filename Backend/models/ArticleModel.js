@@ -18,7 +18,7 @@ const authorDataSchema=new mongoose.Schema({
 
 // create user comment scehma
 const  userCommentSchema =new mongoose.Schema({
-    name:{
+    nameOfUser:{
             type:String,
             required:true
     },
