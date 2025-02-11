@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const UserAuthorContextObj = createContext();
 
@@ -10,6 +10,12 @@ function UserAuthorContext({ children }) {
     profileImageUrl: '',
     role: ''
   });
+  useEffect(()=>{
+    const userInStorage=localStorage.getItem('currentUser')
+    if(userInStorage){
+    setCurrentUser(JSON.parse(userInStorage))
+    }
+  },[])
 
   return (
     <UserAuthorContextObj.Provider value={{ currentUser, setCurrentUser }}>

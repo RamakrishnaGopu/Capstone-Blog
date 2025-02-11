@@ -81,7 +81,7 @@ Content-Type: application/json
 }
 
 ### post comment by article id
-PUT http://localhost:3000/user-api/comment/1738333357
+PUT http://localhost:3000/user-api/comment/1738859042444
 Content-Type: application/json
 
 {
@@ -110,4 +110,29 @@ Content-Type: application/json
     "isArticleActive":false,
     "comments":[]
    
+}
+
+### test admin
+post http://localhost:3000/admin-api/admin
+Content-Type: application/json
+
+{
+   "role": "user",
+  "firstName": "admin-1",
+  "lastName": "reddy",
+  "email": "admin@gmail.com",
+  "profileImageUrl": "alterwait",
+  "isActive": true
+}
+
+###get details
+get http://localhost:3000/admin-api/getUserAuthorDetails
+
+###edit activeState
+post http://localhost:3000/admin-api/active
+Content-Type: application/json
+
+{
+  "role": "user",
+  "email": "rkreddyg115@gmail.com"
 }

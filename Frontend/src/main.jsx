@@ -1,7 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import "bootstrap/dist/css/bootstrap.css";
-import UserAuthorContext from './Contexts/userAuthorContext.jsx';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import UserAuthorContext from './Contexts/UserAuthorContext.jsx'
 import './index.css'
 import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom' 
 import App from './App.jsx'
@@ -14,6 +16,9 @@ import Articles from "./Components/common/Articles.jsx"
 import UserProfile from './Components/user/UserProfile.jsx'
 import AuthorProfile from './Components/author/AuthorProfile.jsx'
 import PostArticle from './Components/author/PostArticle.jsx'
+import AdminProfile from './Components/admin/AdminProfile.jsx';
+import UserAuthorsDetails from './Components/admin/UserAuthorsDetails.jsx';
+// import Profile from './Components/common/Profile.jsx';
 
 
 
@@ -26,12 +31,36 @@ const browserRouterObj=createBrowserRouter([
       {
          path:"",
          element:<Home/>
-      },{
+      },
+      {
         path:"signup",
         element:<Signup/>
       },{
         path:"signin",
         element:<Signin/>
+      },
+      {
+          path:"admin-profile/:email",
+          element:<AdminProfile/>
+          ,children:[
+            {
+              path:"articles",
+              element:<Articles/>
+            },
+            {
+              path:":articleId",
+              element:<ArticleByID/>
+            }
+            ,{
+              path:"user-authors",
+              element:<UserAuthorsDetails/>
+            }
+            ,
+            {
+              path:"",
+              element:<Navigate to="articles"/>
+            }
+        ]
       },
       {
         path:"user-profile/:email",
@@ -44,7 +73,8 @@ const browserRouterObj=createBrowserRouter([
           {
             path:":articleId",
             element:<ArticleByID/>
-          },
+          }
+          ,
           {
             path:"",
             element:<Navigate to="articles"/>
@@ -68,7 +98,7 @@ const browserRouterObj=createBrowserRouter([
             element:<Navigate to="articles"/>
           },
           {
-            path:"PostArticle",
+            path:"article",
             element:<PostArticle/>
           }
         ]
