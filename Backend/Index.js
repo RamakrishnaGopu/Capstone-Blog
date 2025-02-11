@@ -8,6 +8,10 @@ const app=exp();
 const port=process.env.PORT||4000;
 const url=process.env.DBURL;
 
+// connecting frontend to the backend using cors
+const cors=require("cors")
+app.use(cors())
+
 // import mongoose
 const mongoose=require('mongoose')
 
@@ -29,3 +33,9 @@ mongoose.connect(url)
 .then(()=>{app.listen(port,()=>{console.log(`server started at port: ${port}`)});
 })
 .catch(err=>console.log("err"))
+
+// error handler
+app.use((err,req,res,next)=>{
+    console.log("eror obj",err);
+    res.send({message:err.message})
+})
